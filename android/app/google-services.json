@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "90107459993",
+    "project_id": "idpet-23352",
+    "storage_bucket": "idpet-23352.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90107459993:android:a65593886198b6a06bbb08",
+        "android_client_info": {
+          "package_name": "com.apollolab.idpet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90107459993-esfct6l4l5kifttga2rk00264l2bk43u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apollolab.idpet",
+            "certificate_hash": "09625ca753aef6fc667f6a42a3b678c43a4ca43e"
+          }
+        },
+        {
+          "client_id": "90107459993-bhksc1pb1rm6033mc45n5pj8onftdqge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAfKvZa4oiU7XjMCNpHWU4cvNXGzwSWiM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90107459993-bhksc1pb1rm6033mc45n5pj8onftdqge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
