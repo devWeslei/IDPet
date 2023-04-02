@@ -12,7 +12,6 @@ class Routes {
       GetPage(name: '/firstTutorial', page: ()=> FirstTutorial()),
       GetPage(name: '/secondTutorial', page: ()=> SecondTutorial()),
       GetPage(name: '/thirdTutorial', page: ()=> ThirdTutorial()),
-
    ];
 
 }

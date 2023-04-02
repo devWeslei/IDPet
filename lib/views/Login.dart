@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../models/Backgroud.dart';
 
 class Login extends StatelessWidget {
    Login ({Key? key}) : super(key: key);
@@ -7,15 +7,25 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Teste tela 2'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-            onPressed: () {  },
-            child: Text("O numero de vzs")),
-      ),
-
-    );
+        body: Stack(
+      children: [
+        Background(),
+        Center(
+          child: Column(children: [
+            Image.asset(
+              'assets/logoLogin.png',
+              width: 174,
+              height: 187,
+            ),
+            Image.asset(
+              'assets/title.png',
+              width: 400,
+              height: 200,
+            ),
+          ]),
+        ),
+      ],
+    ));
   }
 }
+
