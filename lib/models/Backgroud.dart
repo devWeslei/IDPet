@@ -10,7 +10,9 @@ import 'package:flutter/material.dart';
                width: constraints.maxWidth <= 600 ? constraints.maxWidth : 600,
                color: const Color(0xFF5CF79F),
                constraints: const BoxConstraints(maxWidth: 600),
-               child: Stack(children:[
+               child: Stack(
+                 alignment: Alignment.topCenter,
+                   children:[
                  Positioned(
                    top: -110,
                    left: constraints.maxWidth <= 600 ? (constraints.maxWidth / 2) - (460 / 2) : (600 / 2) - (455 / 2),
