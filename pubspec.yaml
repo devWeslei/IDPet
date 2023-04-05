@@ -90,6 +90,8 @@ flutter:
     - assets/gif.gif
     - assets/logoLogin.png
     - assets/title.png
+    - assets/title.png
+    - assets/loginBottom.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
