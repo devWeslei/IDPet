@@ -13,16 +13,17 @@ class Login extends StatelessWidget {
   final LoginController controller = Get.put(LoginController());
   RxBool _activeLoginButton = true.obs;
 
-  _showDialog(String title, String message){
+  _showDialog(String title, String message) {
     Get.defaultDialog(
       title: title,
       content: Text(message),
       textConfirm: 'Entendi',
       confirmTextColor: Colors.black,
       buttonColor: const Color(0xFF5CF79F),
-      onConfirm:(){
+      radius: 20,
+      onConfirm: () {
         Get.back();
-        },
+      },
     );
   }
 
@@ -41,6 +42,9 @@ class Login extends StatelessWidget {
         print('EMAIL E SENHA APROVADOS, USUARIO VAI PRA HOME!');
 
         //_logarUsuario( userapp );
+
+        controller.emailController.clear();
+        controller.senhaController.clear();
       } else if (senha.isNotEmpty && senha.length < 4) {
         _showDialog('Muito pouco!', 'Senha deve ter no min. 4 caracteres!');
       } else {
@@ -51,23 +55,21 @@ class Login extends StatelessWidget {
     }
   }
 
-  _logarUsuario(UserApp userapp){
-
+  _logarUsuario(UserApp userapp) {
     FirebaseAuth auth = FirebaseAuth.instance;
 
-    auth.signInWithEmailAndPassword(
+    auth
+        .signInWithEmailAndPassword(
       email: userapp.email!,
       password: userapp.senha!,
-    ).then((firebaseUser){
-
+    )
+        .then((firebaseUser) {
       //Navigator.pushNamedAndRemoveUntil(context, RouteGenerator.ROTA_HOME, (_) => false);
-
-    }).catchError((error){
-        _showDialog('Vish!', 'Erro ao autenticar o usuário, verifique o email e senha e tente novamente!');
-
+    }).catchError((error) {
+      _showDialog('Vish!',
+          'Erro ao autenticar o usuário, verifique o email e senha e tente novamente!');
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -76,110 +78,104 @@ class Login extends StatelessWidget {
       body: Align(
         alignment: Alignment.topCenter,
         child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            return Container(
-                width: constraints.maxWidth <= 600 ? constraints.maxWidth : 600,
-                height: constraints.maxHeight,
-                color: const Color(0xFF5CF79F),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: constraints.maxWidth,
-                        height: 325,
-                        color: const Color(0xFF5CF79F),
-                        child: Stack(alignment: Alignment.topCenter,children: [
-                             BackgroundWidget(constraints: constraints,),
-                          // Positioned(
-                          //   top: -110,
-                          //   left: constraints.maxWidth <= 600
-                          //       ? (constraints.maxWidth / 2) - (455 / 2)
-                          //       : (600 / 2) - (455 / 2),
-                          //   child: Transform.scale(
-                          //     scale: 1.3,
-                          //     child: ClipOval(
-                          //       child: Container(
-                          //         color: const Color(0xFFF2ACE1),
-                          //         width: 455,
-                          //         height: 314,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                            Image.asset(
-                              'assets/logoLogin.png',
-                              width: 174,
-                              height: 187,
-                            ),
-                            Positioned(
-                              top: 160,
-                              child: Image.asset(
-                                'assets/title.png',
-                                width: 400,
-                                height: 200,
-                              ),
-                            ),
-                          ]),
-                        ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(constraints.maxWidth * .09,20,constraints.maxWidth * .09,0),//bottom: 20,top: 16,left: 30
-                        child: TextField(
-                          controller: controller.emailController,
-                          buildCounter: (BuildContext context, { int? currentLength, int? maxLength, bool? isFocused }) => null,
-                          maxLength: 60,
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.emailAddress,
-                          style: TextStyle(fontSize: 24),
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                            hintText: "E-mail",
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
+            builder: (BuildContext context, BoxConstraints constraints) {
+          return Container(
+            width: constraints.maxWidth <= 600 ? constraints.maxWidth : 600,
+            height: constraints.maxHeight,
+            color: const Color(0xFF5CF79F),
+            child: SingleChildScrollView(
+              child: Column(children: [
+                Container(
+                  width: constraints.maxWidth,
+                  height: 325,
+                  color: const Color(0xFF5CF79F),
+                  child: Stack(alignment: Alignment.topCenter, children: [
+                    BackgroundWidget(constraints: constraints),
+                    Image.asset(
+                      'assets/logoLogin.png',
+                      width: 174,
+                      height: 187,
+                    ),
+                    Positioned(
+                      top: 160,
+                      child: Image.asset(
+                        'assets/title.png',
+                        width: 400,
+                        height: 200,
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(constraints.maxWidth * .09,20,constraints.maxWidth * .09,0),
-                        child: TextField(
-                          controller: controller.senhaController,
-                          maxLength: 20,
-                          obscureText: true,
-                          buildCounter: (BuildContext context, { int? currentLength, int? maxLength, bool? isFocused }) => null,
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.text,
-                          style: TextStyle(fontSize: 24),
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                            hintText: "Senha",
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
+                    ),
+                  ]),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(constraints.maxWidth * .09, 20,
+                      constraints.maxWidth * .09, 0),
+                  child: TextField(
+                    controller: controller.emailController,
+                    buildCounter: (BuildContext context,
+                            {int? currentLength,
+                            int? maxLength,
+                            bool? isFocused}) =>
+                        null,
+                    maxLength: 60,
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(fontSize: 24),
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(20, 12, 20, 12),
+                      hintText: "E-mail",
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      Padding(padding: EdgeInsets.fromLTRB(0,5,constraints.maxWidth * .09,0),
-                        child: Align(
-                            alignment: Alignment.topRight,
-                            child: GestureDetector(
-                              child: const Text("esqueci minha senha",
-                                style: TextStyle(fontWeight: FontWeight.bold,
-                                    color: Colors.blue
-                                ),
-                              ),
-                              onTap: (){
-                                Get.toNamed('/ForgetPassword');
-                              },
-                            )
-                        ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(constraints.maxWidth * .09, 20,
+                      constraints.maxWidth * .09, 0),
+                  child: TextField(
+                    controller: controller.senhaController,
+                    maxLength: 20,
+                    obscureText: true,
+                    buildCounter: (BuildContext context,
+                            {int? currentLength,
+                            int? maxLength,
+                            bool? isFocused}) =>
+                        null,
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.text,
+                    style: TextStyle(fontSize: 24),
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(20, 12, 20, 12),
+                      hintText: "Senha",
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
                       ),
-                      Center(
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.fromLTRB(0, 5, constraints.maxWidth * .09, 0),
+                  child: Align(
+                      alignment: Alignment.topRight,
+                      child: GestureDetector(
+                        child: const Text(
+                          "esqueci minha senha",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.blue),
+                        ),
+                        onTap: () {
+                          Get.toNamed('/ForgetPassword');
+                        },
+                      )),
+                ),
+                Center(
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: Obx(() => GestureDetector(
                           onTap: _activeLoginButton.value
                               ? () {
@@ -191,7 +187,7 @@ class Login extends StatelessWidget {
                                 }
                               : null,
                           child: Image.asset(
-                            'assets/loginBottom.png',
+                            'assets/loginButton.png',
                             width: 150,
                             height: 120,
                           ),
@@ -199,28 +195,26 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              Get.toNamed('/Register');
-                            },
-                            child: RichText(
-                              text: const TextSpan(
-                                text: 'Não tem conta? ',
-                                style: TextStyle(color: Colors.black),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: 'Cadastre-se!',
-                                    style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                      ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Não tem conta? '),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed('/Register');
+                        },
+                        child: const Text(
+                          'Cadastre-se!',
+                          style: TextStyle(
+                              color: Colors.blue, fontWeight: FontWeight.bold),
+                        ),
+                      )
                     ]),
                 ),
-              );
-          }),
+              ]),
+            ),
+          );
+        }),
       ),
     );
   }

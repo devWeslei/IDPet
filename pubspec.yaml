@@ -91,7 +91,9 @@ flutter:
     - assets/logoLogin.png
     - assets/title.png
     - assets/title.png
-    - assets/loginBottom.png
+    - assets/loginButton.png
+    - assets/register.png
+    - assets/registerButton.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
