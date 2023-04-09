@@ -86,7 +86,7 @@ class Register extends StatelessWidget {
             .doc(firebaseUser.user?.uid)
             .set(userApp.toMap());
 
-         Get.offAllNamed('/FirstTutorial');
+         Get.offAllNamed('/Tutorial');
 
       }).catchError((error) {
         print("erro app: $error");

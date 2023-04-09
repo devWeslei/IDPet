@@ -7,6 +7,7 @@ import 'package:idpet/views/ThirdTutorial.dart';
 import '../views/Home.dart';
 import '../views/Login.dart';
 import '../views/SecondTutorial.dart';
+import '../views/Tutorial.dart';
 
 class Routes {
    static final routes = [
@@ -15,6 +16,7 @@ class Routes {
       GetPage(name: '/Register', page: ()=> Register()),
       GetPage(name: '/Terms', page: ()=> Terms()),
       GetPage(name: '/ForgetPassword', page: ()=> ForgetPassword()),
+      GetPage(name: '/Tutorial', page: ()=> Tutorial()),
       GetPage(name: '/FirstTutorial', page: ()=> FirstTutorial()),
       GetPage(name: '/SecondTutorial', page: ()=> SecondTutorial()),
       GetPage(name: '/ThirdTutorial', page: ()=> ThirdTutorial()),
