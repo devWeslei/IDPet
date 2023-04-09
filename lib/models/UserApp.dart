@@ -3,13 +3,15 @@ class UserApp {
   String? _nome;
   String? _email;
   String? _senha;
+  String? _nomeUsuario;
 
   UserApp();
 
   Map<String, dynamic> toMap(){
     Map<String, dynamic> map = {
-      "nome" : nome,
-      "email" : email,
+      "nome" : _nome,
+      "email" : _email,
+      'nomeUsuario' : _nomeUsuario
     };
     return map;
   }
@@ -36,5 +38,11 @@ class UserApp {
 
   set nome(String? value) {
     this._nome = value;
+  }
+
+  String? get nomeUsuario => _nome;
+
+  set nomeUsuario(String? value) {
+    this._nomeUsuario = value;
   }
 }

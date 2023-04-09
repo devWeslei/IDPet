@@ -7,25 +7,14 @@ import 'package:idpet/controllers/LoginControllers.dart';
 import 'package:idpet/models/BackgroudWidget.dart';
 import 'package:idpet/models/UserApp.dart';
 
+import '../models/DialogWidget.dart';
+
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
 
   final LoginController controller = Get.put(LoginController());
   RxBool _activeLoginButton = true.obs;
 
-  _showDialog(String title, String message) {
-    Get.defaultDialog(
-      title: title,
-      content: Text(message),
-      textConfirm: 'Entendi',
-      confirmTextColor: Colors.black,
-      buttonColor: const Color(0xFF5CF79F),
-      radius: 20,
-      onConfirm: () {
-        Get.back();
-      },
-    );
-  }
 
   Future<dynamic> _validarCampos() async {
     String email = controller.emailController.text;
@@ -34,41 +23,73 @@ class Login extends StatelessWidget {
     RegExp regexEmail = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
     if (email.isNotEmpty && regexEmail.hasMatch(email)) {
-      if (senha.isNotEmpty && senha.length >= 4) {
+      if (senha.isNotEmpty && senha.length >= 6) {
         UserApp userapp = UserApp();
         userapp.email = email;
         userapp.senha = senha;
 
         print('EMAIL E SENHA APROVADOS, USUARIO VAI PRA HOME!');
 
-        //_logarUsuario( userapp );
+        _logarUsuario( userapp );
 
         controller.emailController.clear();
         controller.senhaController.clear();
-      } else if (senha.isNotEmpty && senha.length < 4) {
-        _showDialog('Muito pouco!', 'Senha deve ter no min. 4 caracteres!');
+      } else if (senha.isNotEmpty && senha.length < 6) {
+        DialogWidget('Muito Pouco!', 'Senha deve ter no min, 6 caracteres.')
+            .showDialog();
       } else {
-        _showDialog('Ops!', 'Preencha a senha!');
+        DialogWidget('Ops!', 'Preencha a senha!').showDialog();
       }
     } else {
-      _showDialog('Eita!', 'Preencha o campo com E-mail válido');
+      DialogWidget('Eita!', 'Preencha o campo com E-mail válido')
+          .showDialog();
     }
   }
 
   _logarUsuario(UserApp userapp) {
     FirebaseAuth auth = FirebaseAuth.instance;
 
-    auth
-        .signInWithEmailAndPassword(
-      email: userapp.email!,
-      password: userapp.senha!,
-    )
-        .then((firebaseUser) {
-      //Navigator.pushNamedAndRemoveUntil(context, RouteGenerator.ROTA_HOME, (_) => false);
-    }).catchError((error) {
-      _showDialog('Vish!',
-          'Erro ao autenticar o usuário, verifique o email e senha e tente novamente!');
-    });
+    Future<void> confirmando () async {
+      await auth.signInWithEmailAndPassword(
+        email: userapp.email!,
+        password: userapp.senha!,
+      ).then((firebaseUser) {
+
+        Get.offAllNamed('/Home');
+
+      }).catchError((error) {
+        print("erro app: $error");
+
+        Get.back();
+        DialogWidget('Vish!',
+            'Erro ao logar o usuário, verifique o email e senha e tente novamente!')
+            .showDialog();
+      });
+    }
+
+    Get.to(() =>
+      FutureBuilder(
+          future: confirmando(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState ==
+                ConnectionState.waiting) {
+              return Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Center(
+                  child: Image.asset(
+                    'assets/gif.gif',
+                    width: 176.0,
+                    height: 176.0,
+                  ),
+                ),
+              );
+            }
+            return Container();
+          }
+      ),
+    );
   }
 
   @override

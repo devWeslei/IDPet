@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds:widget.duration), () {
-      Get.offNamed(widget.nextScreen);
+      Get.offAllNamed(widget.nextScreen);
     });
   }
 
