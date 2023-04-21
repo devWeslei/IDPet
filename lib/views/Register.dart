@@ -4,9 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:idpet/controllers/UserController.dart';
 import 'package:idpet/models/ArrowBackWidget.dart';
 import 'package:idpet/models/DialogWidget.dart';
-import 'package:idpet/views/FirstTutorial.dart';
 import '../controllers/RegisterControllers.dart';
 import '../controllers/TermsAndConditions.dart';
 import '../models/BackgroudWidget.dart';
@@ -19,6 +19,8 @@ class Register extends StatelessWidget {
   final TermsAndConditions termsController = Get.put(TermsAndConditions());
   final RegisterControllers registerControllers =
   Get.put(RegisterControllers());
+  final UserController userController = Get.put(UserController());
+
 
   Future<dynamic> _validarCampos() async {
     String usuario = registerControllers.usuarioController.text;
@@ -33,12 +35,16 @@ class Register extends StatelessWidget {
         if (senha.isNotEmpty && senha.length >= 6) {
           if (senha == confirmaSenha) {
             if (termsController.isChecked.value) {
-              UserApp userApp = UserApp();
-              userApp.nomeUsuario = usuario;
-              userApp.email = email;
-              userApp.senha = senha;
 
-              _cadastrarUsuario(userApp);
+              userController.updateUserApp(email: email, senha: senha, nomeUsuario: usuario);
+              //UserApp userApp = UserApp();
+              // userApp.nomeUsuario = usuario;
+              // userApp.email = email;
+              // userApp.senha = senha;
+
+
+
+              _cadastrarUsuario(userController.userApp);
 
               registerControllers.usuarioController.clear();
               registerControllers.emailController.clear();
@@ -71,20 +77,20 @@ class Register extends StatelessWidget {
     }
   }
 
-  _cadastrarUsuario (UserApp userApp) {
+  _cadastrarUsuario (Rx<UserApp> userApp) {
     FirebaseAuth auth = FirebaseAuth.instance;
 
     Future<void> confirmando() async {
       await auth.createUserWithEmailAndPassword(
-          email: userApp.email!,
-          password: userApp.senha!
+          email: userApp.value.email!,
+          password: userApp.value.senha!
       ).then((firebaseUser) {
         //salvar dados do usuário
         FirebaseFirestore db = FirebaseFirestore.instance;
 
         db.collection("usuarios")
             .doc(firebaseUser.user?.uid)
-            .set(userApp.toMap());
+            .set(userController.createUserFirebase());
 
          Get.offAllNamed('/Tutorial');
 
@@ -115,6 +121,8 @@ class Register extends StatelessWidget {
                 ),
               ),
             );
+          } else if (snapshot.connectionState == ConnectionState.none){
+            DialogWidget("Erro!", "Algo de errado aconteceu, não conseguimos conectar!").showDialog();
           }
           return Container();
         }

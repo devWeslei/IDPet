@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:idpet/views/FirstTutorial.dart';
 import 'package:idpet/views/SecondTutorial.dart';
 import 'package:idpet/views/ThirdTutorial.dart';
+import 'package:get/get.dart';
+
+import '../controllers/UserController.dart';
 
 class Tutorial extends StatefulWidget {
-  const Tutorial({Key? key}) : super(key: key);
+   const Tutorial({Key? key}) : super(key: key);
 
   @override
   State<Tutorial> createState() => _TutorialState();

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../controllers/UserController.dart';
+
 class ThirdTutorial extends StatelessWidget {
-  const ThirdTutorial({Key? key}) : super(key: key);
+   ThirdTutorial({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

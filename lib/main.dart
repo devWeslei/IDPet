@@ -14,7 +14,7 @@ void main() async {
     debugShowCheckedModeBanner: false,
     theme: Platform.isAndroid ? DefaultTheme() : IOSTheme(),
     getPages: Routes.routes,
-    home: SplashScreen(nextScreen:'/Home', duration: 6000),
+    home: SplashScreen(nextScreen:'/Login', duration: 6000),
   ));
 
 }
