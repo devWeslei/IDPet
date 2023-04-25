@@ -89,6 +89,41 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
+                Obx(() => GridView.builder(
+                    padding: EdgeInsets.all(10),
+                    itemCount: containerListController.containers.length + 1,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                    itemBuilder: (BuildContext ctx, index) {
+                      if (index == 0) {
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            width: 200,
+                            height: 148,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(width: 1)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add),
+                                Text("Adicionar Container"),
+                              ],
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          width: 200,
+                          height: 148,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(width: 1)),
+                          child: Center(
+                            child: Text(
+                              containerListController.containers[index - 1].toString(),
+                              style: TextStyle(fontSize: 24),
+                            ),
+                          ),
+                        );
+                      }
+                    })),
               ]),
             ),
           );
