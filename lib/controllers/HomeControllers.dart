@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class HomeControllers extends GetxController {
-  RxString nomeUsuario = ''.obs;
+  RxString nomeUsuario = '. . .'.obs;
 
   _recuperarDadosUsuarioLogado() async {
     FirebaseAuth auth = FirebaseAuth.instance;

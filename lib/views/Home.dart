@@ -32,7 +32,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: const Color(0xFF5CF79F),
       body: Align(
@@ -79,13 +78,16 @@ class Home extends StatelessWidget {
                 Align(
                   alignment: Alignment.topLeft,
                   child: GetBuilder<HomeControllers>(
-                      init: homeControllers,
-                      builder:  (_) => Text('E ai ${_.nomeUsuario.value}!', style: TextStyle(
+                    init: homeControllers,
+                    builder: (_) => Text(
+                      'E ai ${_.nomeUsuario.value}!',
+                      style: TextStyle(
                         fontFamily: 'Chewy',
-                        fontSize: 25,
-                        foreground: Paint()
-                          ..color = Colors.white,
-                      ),),),
+                        fontSize: 20,
+                        foreground: Paint()..color = Colors.white,
+                      ),
+                    ),
+                  ),
                 ),
               ]),
             ),
