@@ -1,5 +1,5 @@
 class Agenda {
-
+  String? agendaId;
   String? clinic;
   String? motiveConsultation;
   DateTime? dateConsultation;
@@ -8,7 +8,8 @@ class Agenda {
   DateTime? dateAgenda;
 
   Agenda(
-      {this.clinic,
+      {this.agendaId,
+      this.clinic,
       this.motiveConsultation,
       this.dateConsultation,
       this.appointment,
@@ -17,21 +18,23 @@ class Agenda {
 
   factory Agenda.fromJson(Map<String, dynamic> json) {
     return Agenda(
-      clinic: json['clinic'] as String?,
-      motiveConsultation: json['motiveConsultation'] as String?,
+      agendaId: json['agendaId'],
+      clinic: json['clinic'],
+      motiveConsultation: json['motiveConsultation'],
       dateConsultation: json['dateConsultation'] != null
-          ? DateTime.parse(json['dateConsultation'] as String)
+          ? DateTime.parse(json['dateConsultation'])
           : null,
-      appointment: json['appointment'] as String?,
-      motiveAgenda: json['motiveAgenda'] as String?,
+      appointment: json['appointment'],
+      motiveAgenda: json['motiveAgenda'],
       dateAgenda: json['dateAgenda'] != null
-          ? DateTime.parse(json['dateAgenda'] as String)
+          ? DateTime.parse(json['dateAgenda'])
           : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['agendaId'] = agendaId;
     data['clinic'] = clinic;
     data['motiveConsultation'] = motiveConsultation;
     data['dateConsultation'] = dateConsultation?.toIso8601String();

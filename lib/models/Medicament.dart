@@ -1,5 +1,5 @@
 class Medicament {
-
+  String? medicamentId;
   String? name;
   String? motive;
   String? dosage;
@@ -8,7 +8,8 @@ class Medicament {
   DateTime? finish;
 
   Medicament(
-      {this.name,
+      {this.medicamentId,
+      this.name,
       this.motive,
       this.dosage,
       this.interval,
@@ -17,17 +18,21 @@ class Medicament {
 
   factory Medicament.fromJson(Map<String, dynamic> json) {
     return Medicament(
+      medicamentId: json['medicamentId'],
       name: json['name'],
       motive: json['motive'],
       dosage: json['dosage'],
       interval: json['interval'],
-      initiation: json['initiation'] != null ? DateTime.parse(json['initiation']) : null,
+      initiation: json['initiation'] != null
+          ? DateTime.parse(json['initiation'])
+          : null,
       finish: json['finish'] != null ? DateTime.parse(json['finish']) : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = <String, dynamic>{};
+    data['medicamentId'] = medicamentId;
     data['name'] = name;
     data['motive'] = motive;
     data['dosage'] = dosage;
@@ -36,5 +41,4 @@ class Medicament {
     data['finish'] = finish?.toIso8601String();
     return data;
   }
-
 }

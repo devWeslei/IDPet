@@ -26,7 +26,7 @@ class Login extends StatelessWidget {
       if (senha.isNotEmpty && senha.length >= 6) {
         UserApp userapp = UserApp();
         userapp.email = email;
-        userapp.senha = senha;
+        userapp.password = senha;
 
         print('EMAIL E SENHA APROVADOS, USUARIO VAI PRA HOME!');
 
@@ -52,7 +52,7 @@ class Login extends StatelessWidget {
     Future<void> confirmando () async {
       await auth.signInWithEmailAndPassword(
         email: userapp.email!,
-        password: userapp.senha!,
+        password: userapp.password!,
       ).then((firebaseUser) {
 
         Get.offAllNamed('/Home');

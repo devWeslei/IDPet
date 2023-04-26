@@ -1,5 +1,4 @@
 class PerfilPet {
-
   String? urlPerfilImage;
   String? urlDocImage;
   String? species;
@@ -32,26 +31,26 @@ class PerfilPet {
       this.observation});
 
   factory PerfilPet.fromJson(Map<String, dynamic> json) => PerfilPet(
-    urlPerfilImage: json['urlPerfilImage'],
-    urlDocImage: json['urlDocImage'],
-    species: json['species'],
-    name: json['name'],
-    nickName: json['nickName'],
-    race: json['race'],
-    birth: DateTime.tryParse(json['birth']),
-    gender: json['gender'],
-    pelage: json['pelage'],
-    owner: json['owner'],
-    temperament: json['temperament'],
-    sociable: json['sociable'],
-    food: json['food'],
-    observation: json['observation'],
-  );
+        urlPerfilImage: json['urlPerfilImage'],
+        urlDocImage: json['urlDocImage'],
+        species: json['species'],
+        name: json['name'],
+        nickName: json['nickName'],
+        race: json['race'],
+        birth: DateTime.tryParse(json['birth']),
+        gender: json['gender'],
+        pelage: json['pelage'],
+        owner: json['owner'],
+        temperament: json['temperament'],
+        sociable: json['sociable'],
+        food: json['food'],
+        observation: json['observation'],
+      );
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = <String, dynamic>{};
     data['urlPerfilImage'] = urlPerfilImage;
-    data['urlDocImage'] =  urlDocImage;
+    data['urlDocImage'] = urlDocImage;
     data['species'] = species;
     data['name'] = name;
     data['nickName'] = nickName;
@@ -66,5 +65,4 @@ class PerfilPet {
     data['observation'] = observation;
     return data;
   }
-
 }

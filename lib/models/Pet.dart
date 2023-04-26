@@ -8,6 +8,7 @@ import 'package:idpet/models/Vermifuge.dart';
 
 
 class Pet{
+  String? petId;
   PerfilPet? perfil;
   List<Medicament>? medicament;
   List<Vermifuge>? vermifuge;
@@ -17,6 +18,7 @@ class Pet{
   List<Observation>? observation;
 
   Pet({
+    this.petId,
     this.perfil,
     this.medicament,
     this.vermifuge,
@@ -27,6 +29,7 @@ class Pet{
   });
 
   factory Pet.fromJson(Map<String, dynamic> json) => Pet(
+    petId: json['petId'],
     perfil: json['perfil'] != null ? PerfilPet.fromJson(json['perfil']) : null,
     medicament: json['medicament'] != null ? List<Medicament>.from(json['medicament'].map((x) => Medicament.fromJson(x))) : null,
     vermifuge: json['vermifuge'] != null ? List<Vermifuge>.from(json['vermifuge'].map((x) => Vermifuge.fromJson(x))) : null,
@@ -38,6 +41,7 @@ class Pet{
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = <String, dynamic>{};
+    data['petId'] = petId;
     data['perfil'] = perfil?.toJson();
     data['medicament'] = medicament?.map((x) => x.toJson()).toList();
     data['vermifuge'] = vermifuge?.map((x) => x.toJson()).toList();
@@ -47,5 +51,4 @@ class Pet{
     data['observation'] = observation?.map((x) => x.toJson()).toList();
     return data;
   }
-
 }

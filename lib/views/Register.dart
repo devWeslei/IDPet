@@ -22,20 +22,20 @@ class Register extends StatelessWidget {
 
 
   Future<dynamic> _validarCampos() async {
-    String usuario = registerControllers.usuarioController.text;
+    String nickName = registerControllers.usuarioController.text;
     String email = registerControllers.emailController.text;
-    String senha = registerControllers.senhaController.text;
-    String confirmaSenha = registerControllers.confirmasenhaController.text;
+    String password = registerControllers.senhaController.text;
+    String confirmPassword = registerControllers.confirmasenhaController.text;
 
     RegExp regexEmail = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
-    if (usuario.isNotEmpty) {
+    if (nickName.isNotEmpty) {
       if (email.isNotEmpty && regexEmail.hasMatch(email)) {
-        if (senha.isNotEmpty && senha.length >= 6) {
-          if (senha == confirmaSenha) {
+        if (password.isNotEmpty && password.length >= 6) {
+          if (password == confirmPassword) {
             if (termsController.isChecked.value) {
 
-              userController.updateUserApp(email: email, senha: senha, nomeUsuario: usuario);
+              userController.updateUserApp(email: email, password: password, nickName: nickName);
               //UserApp userApp = UserApp();
               // userApp.nomeUsuario = usuario;
               // userApp.email = email;
@@ -61,7 +61,7 @@ class Register extends StatelessWidget {
                 'campo Confirmar senha está diferente do campo da Senha.')
                 .showDialog();
           }
-        } else if (senha.isNotEmpty && senha.length < 6) {
+        } else if (password.isNotEmpty && password.length < 6) {
           DialogWidget('Muito Pouco!', 'Senha deve ter no min, 6 caracteres.')
               .showDialog();
         } else {
@@ -82,7 +82,7 @@ class Register extends StatelessWidget {
     Future<void> confirmando() async {
       await auth.createUserWithEmailAndPassword(
           email: userApp.value.email!,
-          password: userApp.value.senha!
+          password: userApp.value.password!
       ).then((firebaseUser) {
         //salvar dados do usuário
         FirebaseFirestore db = FirebaseFirestore.instance;

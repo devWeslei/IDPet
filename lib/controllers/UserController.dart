@@ -5,25 +5,25 @@ class UserController extends GetxController{
   final userApp = UserApp().obs;
 
   updateUserApp(
-      {String? idUsuario,
-      String? nome,
+      {String? idUser,
+      String? name,
       String? email,
-      String? senha,
-      String? nomeUsuario}) {
+      String? password,
+      String? nickName}) {
     userApp.update((val) {
-      val?.idUsuario = idUsuario;
-      val?.nome = nome;
+      val?.idUser = idUser;
+      val?.name = name;
       val?.email = email;
-      val?.senha = senha;
-      val?.nomeUsuario = nomeUsuario;
+      val?.password = password;
+      val?.nickName = nickName;
     });
   }
 
   createUserFirebase() {
     // Acessa os atributos do objeto observável user
-    String? nome = userApp.value.nome;
+    String? nome = userApp.value.name;
     String? email = userApp.value.email;
-    String? nomeUsuario = userApp.value.nomeUsuario;
+    String? nomeUsuario = userApp.value.nickName;
 
     Map<String, dynamic> usuarioMap = userApp.value.toMap();
 

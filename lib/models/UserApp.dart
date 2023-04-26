@@ -1,18 +1,18 @@
 
 class UserApp{
-  String? idUsuario;
-  String? nome;
+  String? idUser;
+  String? name;
   String? email;
-  String? senha;
-  String? nomeUsuario;
+  String? password;
+  String? nickName;
 
-  UserApp({this.idUsuario,this.nome,this.email,this.senha,this.nomeUsuario});
+  UserApp({this.idUser,this.name,this.email,this.password,this.nickName});
 
   Map<String, dynamic> toMap(){
     Map<String, dynamic> map = {
-      'nome' : nome,
+      'nome' : name,
       'email' : email,
-      'nomeUsuario' : nomeUsuario
+      'nomeUsuario' : nickName
     };
     return map;
   }
