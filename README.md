@@ -1,17 +1,33 @@
-# idpet
+# IdPet 
 
-A new Flutter project.
+## Screens
+![Preview-Screens]()
 
-## Getting Started
+## Chatting
+![Preview-Screens]()
 
-This project is a starting point for a Flutter application.
+## About this Project
+Login app using:     
+-Firebase Auth.     
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Functionalities   
+-registered user authentication.   
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# IDPet" 
+## Difficulties
+-
+## Made in
+-Flutter 3.7.3 • channel stable.   
+-Dart SDK version: 2.19.2 (stable).   
+
+
+</br>
+
+>if you liked, contribute by giving a ⭐ !! I'll be grateful 😁      
+
+</br>   
+<div align="center">   
+  
+   [![Linkedin Badge](https://img.shields.io/badge/-weslei%20tiago-292929?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/weslei-tiago-53b47a208/)](https://www.linkedin.com/in/weslei-tiago-53b47a208/)   
+  
+   </div>
