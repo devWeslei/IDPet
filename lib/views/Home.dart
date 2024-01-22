@@ -89,7 +89,7 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-                Obx(() => GridView.builder(
+                /*Obx(() => GridView.builder(
                     padding: EdgeInsets.all(10),
                     itemCount: containerListController.containers.length + 1,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
@@ -123,7 +123,7 @@ class Home extends StatelessWidget {
                           ),
                         );
                       }
-                    })),
+                    })),*/
               ]),
             ),
           );

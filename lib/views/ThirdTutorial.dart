@@ -24,7 +24,8 @@ class ThirdTutorial extends StatelessWidget {
                 const SizedBox(
                   height: 70,
                 ),
-                Container(
+                Image.asset(
+                  'assets/thirdTutorial.png',
                   width: 264,
                   height: 233,
                 ),
