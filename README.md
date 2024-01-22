@@ -1,10 +1,10 @@
 # IdPet 
 
 ## Screens
-![Preview-Screens]()
+![Preview-Screens]()   
 
-## Chatting
-![Preview-Screens]()
+## Running
+![Preview-Screens]()   
 
 ## About this Project
 Login app using:     
@@ -12,10 +12,12 @@ Login app using:
 
 
 ## Functionalities   
--registered user authentication.   
+-registered user authentication.  
+-login validation.       
+-state management with GetX.       
 
-## Difficulties
--
+
+
 ## Made in
 -Flutter 3.7.3 • channel stable.   
 -Dart SDK version: 2.19.2 (stable).   
