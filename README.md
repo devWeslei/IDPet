@@ -1,7 +1,9 @@
 # IdPet 
 
 ## Screens
-![Preview-Screens]()   
+![Preview-Screens](https://github.com/devWeslei/IDPet/blob/main/assets/1.png)       
+![Preview-Screens](https://github.com/devWeslei/IDPet/blob/main/assets/12.png)     
+![Preview-Screens](https://github.com/devWeslei/IDPet/blob/main/assets/123.png)    
 
 ## Running
 ![Preview-Screens]()   
