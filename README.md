@@ -1,4 +1,5 @@
-# IdPet 
+# IdPet    
+## app 100% created by me! Hope you like!
 
 ## Screens
 <p align="center">
@@ -11,6 +12,15 @@
 
 <p align="center">
   <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/123.png" min-width="281px" max-width="281px" width="281px">
+</p>  
+
+  ## Tablet Exemple    
+  <p align="center">
+  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/tablet1.png" min-width="281px" max-width="281px" width="281px">
+</p>  
+
+<p align="center">
+  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/tablet2.png" min-width="281px" max-width="281px" width="281px">
 </p>  
   
 
@@ -25,7 +35,8 @@ Login app using:
 ## Functionalities   
 -registered user authentication.  
 -login validation.       
--state management with GetX.       
+-state management with GetX.    
+-100% responsive to different screens.    
 
 
 
