@@ -16,11 +16,11 @@
 
   ## Tablet Exemple    
   <p align="center">
-  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/tablet1.png" min-width="281px" max-width="281px" width="281px">
+  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/tablet1.png" min-width="450px" max-width="450px" width="450px">
 </p>  
 
 <p align="center">
-  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/tablet2.png" min-width="281px" max-width="281px" width="281px">
+  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/tablet2.png" min-width="450px" max-width="450px" width="450px">
 </p>  
   
 
