@@ -2,14 +2,14 @@
 ## app 100% created by me! Hope you like!
 
 ## Running   
-### first login without account   
+### first login without account - jumping to the tutorial   
 <p align="center">
-  <img alt="Demo" src="" min-width="600px" max-width="600px" width="600px"> 
+  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/demo1.gif" min-width="300px" max-width="300px" width="300px"> 
 </p>
 
 ### login with account
 <p align="center">
-  <img alt="Demo" src="" min-width="600px" max-width="600px" width="600px"> 
+  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/demo2.gif" min-width="300px" max-width="300px" width="300px"> 
 </p>
 
 ## Screens
@@ -25,7 +25,7 @@
   <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/123.png" min-width="281px" max-width="281px" width="281px">
 </p>  
 
-  ## Tablet Exemple   
+  ## Tablet Example   
   <p align="center">
   <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/tablet1.png" min-width="450px" max-width="450px" width="450px">
 </p>  
