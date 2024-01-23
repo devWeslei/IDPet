@@ -4,12 +4,12 @@
 ## Running   
 ### first login without account   
 <p align="center">
-  <img alt="Demo" src="" > 
+  <img alt="Demo" src="" min-width="600px" max-width="600px" width="600px"> 
 </p>
 
 ### login with account
 <p align="center">
-  <img alt="Demo" src="" > 
+  <img alt="Demo" src="" min-width="600px" max-width="600px" width="600px"> 
 </p>
 
 ## Screens
