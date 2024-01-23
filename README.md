@@ -1,9 +1,18 @@
 # IdPet 
 
 ## Screens
-![Preview-Screens](https://github.com/devWeslei/IDPet/blob/main/assets/1.png)       
-![Preview-Screens](https://github.com/devWeslei/IDPet/blob/main/assets/12.png)     
-![Preview-Screens](https://github.com/devWeslei/IDPet/blob/main/assets/123.png)    
+<p align="center">
+  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/1.png" min-width="573px" max-width="573px" width="573px" disabled>
+</p>     
+
+<p align="center">
+  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/12.png" min-width="870px" max-width="870px" width="870px" disabled>
+</p>  
+
+<p align="center">
+  <img alt="Demo" src="https://github.com/devWeslei/IDPet/blob/main/assets/123.png" min-width="281px" max-width="281px" width="281px" disabled>
+</p>  
+  
 
 ## Running
 ![Preview-Screens]()   
