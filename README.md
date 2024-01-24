@@ -36,14 +36,14 @@
     
 ## About this Project
 Login app using:     
--Firebase Auth.     
+-Firebase Auth.      
+-State management with GetX.   
 
 
 ## Functionalities   
--registered user authentication.  
--login validation.       
--state management with GetX.    
--100% responsive to different screens.    
+-registered user authentication.     
+-login validation.              
+-100% responsive to different screens.       
 
 
 
