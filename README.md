@@ -37,7 +37,8 @@
 ## About this Project
 Login app using:     
 -Firebase Auth.      
--State management with GetX.   
+-State management with GetX.
+-Splashscreen.
 
 
 ## Functionalities   
