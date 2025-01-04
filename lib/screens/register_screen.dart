@@ -3,23 +3,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:idpet/controllers/UserController.dart';
-import 'package:idpet/models/ArrowBackWidget.dart';
-import 'package:idpet/models/DialogWidget.dart';
-import '../controllers/RegisterControllers.dart';
-import '../controllers/TermsAndConditions.dart';
-import '../models/BackgroudWidget.dart';
-import '../models/UserApp.dart';
+import 'package:idpet/controllers/user_controller.dart';
+import 'package:idpet/models/arrowbackwidget_model.dart';
+import 'package:idpet/models/dialogwidget_model.dart';
+import '../controllers/register_controller.dart';
+import '../controllers/terms_and_conditions_controller.dart';
+import '../models/backgroudwidget_model.dart';
+import '../models/userapp_model.dart';
 
-class Register extends StatelessWidget {
-  Register({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  RegisterScreen({Key? key}) : super(key: key);
 
   RxBool _activeLoginButton = true.obs;
-  final TermsAndConditions termsController = Get.put(TermsAndConditions());
-  final RegisterControllers registerControllers =
-  Get.put(RegisterControllers());
+  final TermsAndConditionsController termsController =
+      Get.put(TermsAndConditionsController());
+  final RegisterController registerControllers = Get.put(RegisterController());
   final UserController userController = Get.put(UserController());
-
 
   Future<dynamic> _validarCampos() async {
     String usuario = registerControllers.usuarioController.text;
@@ -34,14 +33,12 @@ class Register extends StatelessWidget {
         if (senha.isNotEmpty && senha.length >= 6) {
           if (senha == confirmaSenha) {
             if (termsController.isChecked.value) {
-
-              userController.updateUserApp(email: email, senha: senha, nomeUsuario: usuario);
+              userController.updateUserApp(
+                  email: email, senha: senha, nomeUsuario: usuario);
               //UserApp userApp = UserApp();
               // userApp.nomeUsuario = usuario;
               // userApp.email = email;
               // userApp.senha = senha;
-
-
 
               _cadastrarUsuario(userController.userApp);
 
@@ -50,89 +47,88 @@ class Register extends StatelessWidget {
               registerControllers.senhaController.clear();
               registerControllers.confirmasenhaController.clear();
               termsController.isChecked.value = false;
-
             } else {
-              DialogWidget('ATENÇÃO!',
-                  'aceite os termos de Política e Privacidade para liberar o cadastro.')
+              DialogWidgetModel('ATENÇÃO!',
+                      'aceite os termos de Política e Privacidade para liberar o cadastro.')
                   .showDialog();
             }
           } else {
-            DialogWidget('não bate!',
-                'campo Confirmar senha está diferente do campo da Senha.')
+            DialogWidgetModel('não bate!',
+                    'campo Confirmar senha está diferente do campo da Senha.')
                 .showDialog();
           }
         } else if (senha.isNotEmpty && senha.length < 6) {
-          DialogWidget('Muito Pouco!', 'Senha deve ter no min, 6 caracteres.')
+          DialogWidgetModel(
+                  'Muito Pouco!', 'Senha deve ter no min, 6 caracteres.')
               .showDialog();
         } else {
-          DialogWidget('Ops!', 'Preencha a senha!').showDialog();
+          DialogWidgetModel('Ops!', 'Preencha a senha!').showDialog();
         }
       } else {
-        DialogWidget('Eita!', 'Preencha o campo com E-mail válido')
+        DialogWidgetModel('Eita!', 'Preencha o campo com E-mail válido')
             .showDialog();
       }
     } else {
-      DialogWidget('Ops!', 'Preencha todos os campos.').showDialog();
+      DialogWidgetModel('Ops!', 'Preencha todos os campos.').showDialog();
     }
   }
 
-  _cadastrarUsuario (Rx<UserApp> userApp) {
+  _cadastrarUsuario(Rx<UserAppModel> userApp) {
     FirebaseAuth auth = FirebaseAuth.instance;
 
     Future<void> confirmando() async {
-      await auth.createUserWithEmailAndPassword(
-          email: userApp.value.email!,
-          password: userApp.value.senha!
-      ).then((firebaseUser) {
+      await auth
+          .createUserWithEmailAndPassword(
+              email: userApp.value.email!, password: userApp.value.senha!)
+          .then((firebaseUser) {
         //salvar dados do usuário
         FirebaseFirestore db = FirebaseFirestore.instance;
 
-        db.collection("usuarios")
+        db
+            .collection("usuarios")
             .doc(firebaseUser.user?.uid)
             .set(userController.createUserFirebase());
 
-         Get.offAllNamed('/Tutorial');
-
+        Get.offAllNamed('/Tutorial');
       }).catchError((error) {
         print("erro app: $error");
 
         Get.back();
-        DialogWidget('Vish!', 'Erro ao cadastrar usuário, verifique os campos e tente novamente!').showDialog();
-
+        DialogWidgetModel('Vish!',
+                'Erro ao cadastrar usuário, verifique os campos e tente novamente!')
+            .showDialog();
       });
     }
 
-    Get.to(() =>
-      FutureBuilder(
-        future: confirmando(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState ==
-              ConnectionState.waiting) {
-            return Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Center(
-                child: Image.asset(
-                  'assets/gif.gif',
-                  width: 176.0,
-                  height: 176.0,
+    Get.to(
+      () => FutureBuilder(
+          future: confirmando(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
                 ),
-              ),
-            );
-          } else if (snapshot.connectionState == ConnectionState.none){
-            DialogWidget("Erro!", "Algo de errado aconteceu, não conseguimos conectar!").showDialog();
-          }
-          return Container();
-        }
-      ),
+                child: Center(
+                  child: Image.asset(
+                    'assets/gif.gif',
+                    width: 176.0,
+                    height: 176.0,
+                  ),
+                ),
+              );
+            } else if (snapshot.connectionState == ConnectionState.none) {
+              DialogWidgetModel("Erro!",
+                      "Algo de errado aconteceu, não conseguimos conectar!")
+                  .showDialog();
+            }
+            return Container();
+          }),
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: const Color(0xFF5CF79F),
       body: Align(
@@ -150,8 +146,8 @@ class Register extends StatelessWidget {
                   height: 270,
                   color: const Color(0xFF5CF79F),
                   child: Stack(alignment: Alignment.topCenter, children: [
-                    BackgroundWidget(constraints: constraints),
-                    const ArrowBackWidget(),
+                    BackgroundWidgetModel(constraints: constraints),
+                    const ArrowBackWidgetModel(),
                     Positioned(
                       top: 20,
                       child: Image.asset(
@@ -272,7 +268,8 @@ class Register extends StatelessWidget {
                           value: termsController.isChecked.value,
                           onChanged: (value) {
                             termsController.toggleCheckbox();
-                            print('CHECKBOX ESTA ${termsController.isChecked.value}');
+                            print(
+                                'CHECKBOX ESTA ${termsController.isChecked.value}');
                           },
                         ),
                         Text('Aceito os termos de '),
@@ -291,8 +288,7 @@ class Register extends StatelessWidget {
                 ),
                 Center(
                     child: Obx(
-                  () =>
-                      GestureDetector(
+                  () => GestureDetector(
                     onTap: _activeLoginButton.value
                         ? () {
                             _activeLoginButton.value = false;

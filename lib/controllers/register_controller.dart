@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RegisterControllers extends GetxController{
+class RegisterController extends GetxController {
   TextEditingController usuarioController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController senhaController = TextEditingController();

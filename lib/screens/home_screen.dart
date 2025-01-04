@@ -1,15 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:idpet/models/DialogWidget.dart';
-import '../controllers/HomeControllers.dart';
+import '../controllers/home_controller.dart';
 
-class Home extends StatelessWidget {
-  Home({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
-  final HomeControllers homeControllers = Get.put(HomeControllers());
+  final HomeController homeControllers = Get.put(HomeController());
 
   Future _verificaUsuarioLogado() async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -77,7 +74,7 @@ class Home extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.topLeft,
-                  child: GetBuilder<HomeControllers>(
+                  child: GetBuilder<HomeController>(
                     init: homeControllers,
                     builder: (_) => Text(
                       'E ai ${_.nomeUsuario.value}!',

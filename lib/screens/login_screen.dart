@@ -1,20 +1,18 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:idpet/controllers/LoginControllers.dart';
-import 'package:idpet/models/BackgroudWidget.dart';
-import 'package:idpet/models/UserApp.dart';
+import 'package:idpet/controllers/login_controller.dart';
+import 'package:idpet/models/backgroudwidget_model.dart';
+import 'package:idpet/models/userapp_model.dart';
 
-import '../models/DialogWidget.dart';
+import '../models/dialogwidget_model.dart';
 
-class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  LoginScreen({Key? key}) : super(key: key);
 
   final LoginController controller = Get.put(LoginController());
   RxBool _activeLoginButton = true.obs;
-
 
   Future<dynamic> _validarCampos() async {
     String email = controller.emailController.text;
@@ -24,55 +22,55 @@ class Login extends StatelessWidget {
 
     if (email.isNotEmpty && regexEmail.hasMatch(email)) {
       if (senha.isNotEmpty && senha.length >= 6) {
-        UserApp userapp = UserApp();
+        UserAppModel userapp = UserAppModel();
         userapp.email = email;
         userapp.senha = senha;
 
         print('EMAIL E SENHA APROVADOS, USUARIO VAI PRA HOME!');
 
-        _logarUsuario( userapp );
+        _logarUsuario(userapp);
 
         controller.emailController.clear();
         controller.senhaController.clear();
       } else if (senha.isNotEmpty && senha.length < 6) {
-        DialogWidget('Muito Pouco!', 'Senha deve ter no min, 6 caracteres.')
+        DialogWidgetModel(
+                'Muito Pouco!', 'Senha deve ter no min, 6 caracteres.')
             .showDialog();
       } else {
-        DialogWidget('Ops!', 'Preencha a senha!').showDialog();
+        DialogWidgetModel('Ops!', 'Preencha a senha!').showDialog();
       }
     } else {
-      DialogWidget('Eita!', 'Preencha o campo com E-mail válido')
+      DialogWidgetModel('Eita!', 'Preencha o campo com E-mail válido')
           .showDialog();
     }
   }
 
-  _logarUsuario(UserApp userapp) {
+  _logarUsuario(UserAppModel userapp) {
     FirebaseAuth auth = FirebaseAuth.instance;
 
-    Future<void> confirmando () async {
-      await auth.signInWithEmailAndPassword(
+    Future<void> confirmando() async {
+      await auth
+          .signInWithEmailAndPassword(
         email: userapp.email!,
         password: userapp.senha!,
-      ).then((firebaseUser) {
-
+      )
+          .then((firebaseUser) {
         Get.offAllNamed('/Home');
-
       }).catchError((error) {
         print("erro app: $error");
 
         Get.back();
-        DialogWidget('Vish!',
-            'Erro ao logar o usuário, verifique o email e senha e tente novamente!')
+        DialogWidgetModel('Vish!',
+                'Erro ao logar o usuário, verifique o email e senha e tente novamente!')
             .showDialog();
       });
     }
 
-    Get.to(() =>
-      FutureBuilder(
+    Get.to(
+      () => FutureBuilder(
           future: confirmando(),
           builder: (context, snapshot) {
-            if (snapshot.connectionState ==
-                ConnectionState.waiting) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
               return Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -87,8 +85,7 @@ class Login extends StatelessWidget {
               );
             }
             return Container();
-          }
-      ),
+          }),
     );
   }
 
@@ -111,7 +108,7 @@ class Login extends StatelessWidget {
                   height: 325,
                   color: const Color(0xFF5CF79F),
                   child: Stack(alignment: Alignment.topCenter, children: [
-                    BackgroundWidget(constraints: constraints),
+                    BackgroundWidgetModel(constraints: constraints),
                     Image.asset(
                       'assets/logoLogin.png',
                       width: 174,
@@ -217,20 +214,21 @@ class Login extends StatelessWidget {
                 ),
                 Center(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Não tem conta? '),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed('/Register');
-                        },
-                        child: const Text(
-                          'Cadastre-se!',
-                          style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ]),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Não tem conta? '),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed('/Register');
+                          },
+                          child: const Text(
+                            'Cadastre-se!',
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ]),
                 ),
               ]),
             ),

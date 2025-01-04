@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:idpet/models/UserApp.dart';
+import 'package:idpet/models/userapp_model.dart';
 
-class UserController extends GetxController{
-  final userApp = UserApp().obs;
+class UserController extends GetxController {
+  final userApp = UserAppModel().obs;
 
   updateUserApp(
       {String? idUsuario,

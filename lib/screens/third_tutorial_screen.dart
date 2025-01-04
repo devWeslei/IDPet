@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../controllers/UserController.dart';
-
-class ThirdTutorial extends StatelessWidget {
-   ThirdTutorial({Key? key}) : super(key: key);
+class ThirdTutorialScreen extends StatelessWidget {
+  ThirdTutorialScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

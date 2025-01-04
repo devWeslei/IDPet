@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
-class SecondTutorial extends StatelessWidget {
-  const SecondTutorial({Key? key}) : super(key: key);
+class SecondTutorialScreen extends StatelessWidget {
+  const SecondTutorialScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

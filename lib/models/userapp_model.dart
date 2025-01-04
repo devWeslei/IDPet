@@ -1,18 +1,18 @@
-
-class UserApp{
+class UserAppModel {
   String? idUsuario;
   String? nome;
   String? email;
   String? senha;
   String? nomeUsuario;
 
-  UserApp({this.idUsuario,this.nome,this.email,this.senha,this.nomeUsuario});
+  UserAppModel(
+      {this.idUsuario, this.nome, this.email, this.senha, this.nomeUsuario});
 
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {
-      'nome' : nome,
-      'email' : email,
-      'nomeUsuario' : nomeUsuario
+      'nome': nome,
+      'email': email,
+      'nomeUsuario': nomeUsuario
     };
     return map;
   }
